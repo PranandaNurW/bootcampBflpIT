@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Checkout</title>
+</head>
+
+<body>
+    <div class="row">
+        <div class="column">
+            <div class="mySlides fade">
+                <img src="../assets/1.jpg" style="width: 700px; height: auto;" />
+            </div>
+            <div style="text-align: center">
+                <span class="dot"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+        </div>
+        <br />
+
+        <div class="column">
+            <div class="container">
+                <div class="heading">
+                    <h1>Checkout</h1>
+                </div>
+                <label for="name">Card Name</label>
+                <input type="text" id="name" name="name" placeholder="Name" />
+                <br />
+
+                <label for="card">Card number</label>
+                <input type="text" minlength="16" maxlength="16" id="card" name="card"
+                    placeholder="0000 0000 0000 0000" />
+
+                <br />
+                <label for="card">Candidate Name</label>
+                <input type="text" minlength="16" maxlength="16" id="card" name="card" placeholder="Candidate Name" />
+                <br />
+
+                <div class="exp-cvc">
+                    <div class="expiration">
+                        <label for="expiry">Expiration date</label>
+                        <input class="inputCard" name="expiry" id="expiry" type="text" requiredplaceholder="00/00" />
+                        <br />
+                    </div>
+                    <div class="security">
+                        <label for="cvc">CVC</label>
+                        <input type="text" minlength="3" maxlength="4" id="cvc" name="cvc" placeholder="XXX" />
+                        <br />
+                    </div>
+
+                </div>
+                <div class="btn">
+                    <span id="submit">Submit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

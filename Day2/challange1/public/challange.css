@@ -1,0 +1,111 @@
+/* */
+body {
+    background-color: lightgrey;
+}
+
+#navbar {
+    background-color: white;
+    overflow: hidden;
+}
+
+#navbar ul {
+    float: right;
+}
+
+#navbar li {
+    list-style-type: none;
+    float: left;
+    font-weight: bold;
+    padding: 3px 15px;
+    border-radius: 5px;
+}
+
+#navbar a {
+    text-decoration: none;
+    color: black;
+}
+
+.wrapper {
+    margin-top: 20px;
+    background-color: white;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: auto;
+    padding: 10px;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+    flex: 1;
+    margin: 10px;
+    max-width: 150px;
+}
+
+#profile-picture {
+    margin-right: 0px;
+}
+
+#highlight {
+    margin-right: 50px;
+}
+
+#highlight #profile-button {
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+#profile-button1 {
+    color: white;
+    background-color: blue;
+    padding: 10px;
+    border: 0;
+}
+
+#profile-button2 {
+    color: green;
+    background-color: white;
+    padding: 10px;
+    border-color: green;
+}
+
+#highlight h1 {
+    margin: 0;
+}
+
+#label {
+    font-weight: bold;
+    margin-right: 0px;
+}
+
+#label > div {
+    margin-bottom: 5px;
+}
+
+#profile-detail {
+    margin-left: 0px;
+}
+
+#profile-detail > div {
+    margin-bottom: 5px;
+}
+
+#profile-form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+#submit-form {
+    margin-top: 10px;
+    background-color: green;
+    color: white;
+    padding: 10px;
+    border: 0;
+    width: 100%;
+}
