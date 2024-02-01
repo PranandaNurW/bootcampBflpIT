@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palindrome Checker</title>
+</head>
+
+<body>
+    <h2>Check Palindrome</h2>
+    <input type="text" name="input-palindrome" id="input-palindrome" size="50px">
+    <button type="button" id="check-palindrome"
+        onclick="cekPalindrome(document.getElementById('input-palindrome').value)">Check Palindrome</button>
+    <p id="message"></p>
+    <script>
+        const messageOutput = document.getElementById("message");
+
+        function isPalindrome(str) {
+            let re = /[^A-Za-z0-9]/g;
+            str = str.toLowerCase().replace(re, '');
+            let len = str.length;
+            for (let i = 0; i < len / 2; i++) {
+                if (str[i] !== str[len - 1 - i]) return false;
+            }
+            return true;
+        }
+        
+        function cekPalindrome(str) {
+            if (isPalindrome(str)) messageOutput.textContent = "Palindrom"; 
+            else messageOutput.textContent = "Bukan Palindrom"; 
+        }
+    </script>
+</body>
+
+</html>

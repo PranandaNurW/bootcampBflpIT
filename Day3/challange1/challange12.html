@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challange 1.2 Day 3</title>
+</head>
+
+<body>
+    <script>
+        while(true) {
+            let message = "Inputkan nilai 1-100";
+            const input = parseInt(prompt("Masukkan nilai (1-100)"));            
+            
+            if(input >= 80 && input <= 100) message = "Your grade is A";
+            else if(input >= 60 && input < 80) message = "Your grade is B";
+            else if(input >= 40 && input < 60) message = "Your grade is C";
+            else if(input >= 0 && input < 40) message = "Your grade is D";
+            else message;
+
+            alert(message);
+        }
+    </script>
+</body>
+
+</html>

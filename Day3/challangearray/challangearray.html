@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challange Array</title>
+</head>
+<body>
+    <script>
+        // Soal 1
+        const myArray = [];
+        
+        myArray.push("apple");
+        myArray.push("banana");
+        myArray.pop();
+        myArray.unshift("orange");
+        myArray.shift();
+        
+        console.log(myArray);
+        // Soal 2
+        const firstArray = ["apple", "banana"];
+        const secondArray = ["melon", "orange"];
+
+        let combinedArray = firstArray.concat(secondArray);
+        let stringCombinedArray = combinedArray.join(", ");
+
+        console.log(stringCombinedArray);
+
+        // Soal 3
+        const numbers = [9, 6, 5, 12, 97, 18, 13];
+        console.log(numbers.sort((a, b) => (a - b))); //ascending
+        console.log(numbers.sort((a, b) => (b - a))); //descending
+
+        // Soal 4
+        const fruits = ["apple", "banana", "orange", "grape", "kiwi"];
+        fruits.splice(1, 2)
+        console.log(fruits);
+
+        // Soal 5
+        const sentence = "Hello,World,JavaScript";
+        const splitSentence = sentence.split(",");
+        console.log(splitSentence);
+    </script>
+</body>
+</html>
