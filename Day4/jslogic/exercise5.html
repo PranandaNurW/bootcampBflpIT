@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 Logic</title>
+</head>
+<body>
+    <script>
+        function treeStepsAB(text) {
+            for(let i = 0; i < text.length; i++) {
+                if(text[i] == "a" && text[i + 4] == "b") return true;
+                else if(text[i] == "b" && text[i + 4] == "a") return true;
+            }
+            return false;
+        }
+
+        console.log(treeStepsAB("lane borrowed"));
+        console.log(treeStepsAB('i am sick'));
+        console.log(treeStepsAB('you are boring'));
+        console.log(treeStepsAB('barbarian'));
+        console.log(treeStepsAB('bacon and meat'));
+    </script>
+</body>
+</html>

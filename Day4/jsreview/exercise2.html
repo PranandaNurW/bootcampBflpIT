@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 2</title>
+</head>
+<body>
+    <script>
+        const profile = {
+            nama_depan: "Prananda",
+            nama_belakang: "Nur Widiastara",
+            hobi: [
+                "Ping-pong", "Tidur"
+            ],
+            angka_favorit: 7,
+            memakai_kacamata: true,
+        };
+
+        console.log(profile);
+        
+        let nama_lengkap = `${profile.nama_depan} ${profile.nama_belakang}`
+        console.log(nama_lengkap);
+
+        profile.angka_favorit = 8;
+        console.log(profile);
+
+        profile.hobi.push("Coding");
+        console.log(profile);
+
+        profile.lulusan = "Hacktiv8";
+        console.log(profile);
+        
+        for(let i; i < profile.hobi.length; i++){
+            console.log(profile.hobi[i]);
+        }
+
+        for(const key in profile) {
+            console.log(key);
+        }
+
+        for(const key in profile) {
+            console.log(profile[key]);
+        }
+
+        for(const key in profile){
+            console.log(`${key} : ${profile[key]}`);
+        }
+    </script>
+</body>
+</html>

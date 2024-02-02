@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4 logic</title>
+</head>
+<body>
+    <script>
+        function isAritmeticPorgression(numArr){
+            const diff = numArr[1] - numArr[0];
+            if (diff < 1) return false;
+
+            for(i = 0; i < numArr.length - 1; i++){
+                if (numArr[i + 1] - numArr[i] != diff) return false;
+            } 
+            return true;
+        }
+
+        console.log(isAritmeticPorgression([1, 2, 3, 4, 5, 6]));
+        console.log(isAritmeticPorgression([2, 4, 6, 12, 24]));
+        console.log(isAritmeticPorgression([2, 4, 6, 8]));
+        console.log(isAritmeticPorgression([2, 6, 18, 54]));
+        console.log(isAritmeticPorgression([1, 2, 3, 4, 7, 9]));
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 4</title>
+</head>
+<body>
+    <script>
+        function evenOdd(num){
+            if(typeof num !== "number") return "Invalid Data";
+
+            if(num % 2 == 0) return "genap";
+            else return "ganjil";
+        }
+
+        console.log(evenOdd(2));
+        console.log(evenOdd(3));
+        console.log(evenOdd(20));
+        console.log(evenOdd(21));
+    </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 logic</title>
+</head>
+<body>
+    <script>
+        function gcd(firstNumber, secondNumber){
+            while(firstNumber != secondNumber) {
+                if(firstNumber > secondNumber) firstNumber = firstNumber - secondNumber;
+                else secondNumber = secondNumber - firstNumber;
+            }
+            return secondNumber;
+        }
+
+        console.log(gcd(12, 16));
+        console.log(gcd(50, 40));
+        console.log(gcd(22, 99));
+        console.log(gcd(24, 36));
+        console.log(gcd(17, 23));
+    </script>
+</body>
+</html>
