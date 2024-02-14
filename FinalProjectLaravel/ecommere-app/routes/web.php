@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +25,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('product', ProductController::class);
+Route::resource('category', CategoryController::class);
+
+Route::get('order/{order}/create_item', [OrderController::class, 'itemCreate'])->name('item.create');
+Route::post('order/{order}/create_item', [OrderController::class, 'itemStore'])->name('item.store');;
+Route::resource('order', OrderController::class);
+Route::resource('report', OrderItemController::class);
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
 Route::put('/profile', 'ProfileController@update')->name('profile.update');

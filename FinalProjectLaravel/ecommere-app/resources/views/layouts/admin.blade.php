@@ -21,6 +21,8 @@
 
     <!-- Favicon -->
     <link href="{{ asset('img/favicon.png') }}" rel="icon" type="image/png">
+
+    @stack('css-script')
 </head>
 <body id="page-top">
 
@@ -48,27 +50,38 @@
         </li>
 
         <!-- Divider -->
-        <hr class="sidebar-divider">
+        <hr class="sidebar-divider my-0">
 
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            {{ __('Settings') }}
-        </div>
-
-        <!-- Nav Item - Profile -->
-        <li class="nav-item {{ Nav::isRoute('profile') }}">
-            <a class="nav-link" href="{{ route('profile') }}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>{{ __('Profile') }}</span>
-            </a>
+        <li class="nav-item {{ Nav::isRoute('product.index') }}">
+            <a class="nav-link" href="{{ route('product.index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Product') }}</span></a>
         </li>
 
-        <!-- Nav Item - About -->
-        <li class="nav-item {{ Nav::isRoute('about') }}">
-            <a class="nav-link" href="{{ route('about') }}">
-                <i class="fas fa-fw fa-hands-helping"></i>
-                <span>{{ __('About') }}</span>
-            </a>
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item {{ Nav::isRoute('category.index') }}">
+            <a class="nav-link" href="{{ route('category.index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Category') }}</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item {{ Nav::isRoute('order.index') }}">
+            <a class="nav-link" href="{{ route('order.index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Order') }}</span></a>
+        </li>
+
+        <!-- Divider -->
+        <hr class="sidebar-divider my-0">
+
+        <li class="nav-item {{ Nav::isRoute('report.index') }}">
+            <a class="nav-link" href="{{ route('report.index') }}">
+                <i class="fas fa-fw fa-tachometer-alt"></i>
+                <span>{{ __('Report') }}</span></a>
         </li>
 
         <!-- Divider -->
@@ -329,5 +342,9 @@
 <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
+
+@stack('js-script')
+
+
 </body>
 </html>

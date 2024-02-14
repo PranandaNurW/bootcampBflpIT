@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 
 class ProductController extends Controller
 {
@@ -13,7 +16,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $context = [
+            "products" => Product::all()
+        ];
+        return view('product.index', $context);
     }
 
     /**
@@ -21,7 +27,11 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        $context = [
+            "categories" => Category::all(),
+        ];
+        
+        return view('product.create', $context);
     }
 
     /**
@@ -29,7 +39,11 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        //
+        $validatedData = $request->all();
+
+        Product::create($validatedData);
+
+        return redirect()->route('product.index')->with('success', 'New product successfully created');
     }
 
     /**
@@ -45,7 +59,14 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        Product::findOrFail($product->id);
+
+        $context = [
+            "categories" => Category::all(),
+            "product" => $product
+        ];
+
+        return view('product.edit', $context);
     }
 
     /**
@@ -53,7 +74,12 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        Product::findOrFail($product->id);
+        $validatedData = $request->all();
+
+        $product->update($validatedData);
+
+        return redirect()->route('product.index')->with('success', 'Product successfully updated');
     }
 
     /**
@@ -61,6 +87,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        Product::findOrFail($product->id);
+
+        $product->delete();
+
+        return redirect()->route('product.index')->with('success', 'Product successfully deleted');
     }
 }

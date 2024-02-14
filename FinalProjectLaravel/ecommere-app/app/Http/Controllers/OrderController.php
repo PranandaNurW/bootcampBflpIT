@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Http\Requests\StoreOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
+use App\Models\OrderItem;
+use App\Models\Product;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -13,7 +18,10 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $context = [
+            "orders" => Order::all()
+        ];
+        return view('order.index', $context);
     }
 
     /**
@@ -21,7 +29,10 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $context = [
+            "users" => User::all(),
+        ];
+        return view('order.create', $context);
     }
 
     /**
@@ -29,7 +40,42 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        $validatedData = $request->all();
+        $validatedData["invoice"] = Str::uuid();
+        $validatedData["total"] = 0;
+
+        Order::create($validatedData);
+
+        return redirect()->route('order.index')->with('success', 'New order successfully created');
+    }
+    
+    public function itemCreate(Order $order) {
+        Order::findOrFail($order->id);
+
+        $context = [
+            "products" => Product::all(),
+            "order" => $order
+        ];
+        return view('order.item-create', $context);
+    }
+
+    public function itemStore(Request $request, Order $order) {
+        Order::findOrFail($order->id);
+
+        $validatedData = $request->validate([
+            "product_id" => "required",
+            "quantity" => "required",
+            "subtotal" => "required"
+        ]);
+
+        $product_id = explode(",", $validatedData["product_id"]);
+        $validatedData["product_id"] = $product_id[0];
+        $validatedData["order_id"] = $order->id;
+
+        OrderItem::create($validatedData);
+        $order->update(['total' => $order->items()->sum('subtotal')]);
+
+        return redirect()->route('order.index')->with('success', 'New order successfully created');
     }
 
     /**
@@ -37,7 +83,12 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        Order::findOrFail($order->id);
+
+        $context = [
+            "order" => $order
+        ];
+        return view('order.show', $context);
     }
 
     /**

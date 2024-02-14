@@ -43,4 +43,10 @@ class LoginController extends Controller
         session()->flash('success', 'You are logged in!');
         return $this->redirectTo;
     }
+
+    protected function loggedOut()
+    {
+        session()->flash('success', 'You are logged out!');
+        return redirect('/login');
+    }
 }
