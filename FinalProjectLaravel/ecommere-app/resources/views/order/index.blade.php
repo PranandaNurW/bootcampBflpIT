@@ -32,7 +32,6 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <a href="{{ route('order.create') }}"><button class="btn btn-success mb-3 mr-3">Add</button></a>
-                            <button class="btn btn-primary mb-3">Bulk Add</button>
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -40,7 +39,7 @@
                                     <th>User</th>
                                     <th>Status</th>
                                     <th>Date</th>
-                                    <th>Created At</th>
+                                    <th>Total</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -52,14 +51,37 @@
                                     <td>{{ $order->user->name }}</td>
                                     <td><p class="badge badge-primary">{{ $order->status }}</p></td>
                                     <td>{{ $order->date }}</td>
-                                    <td>{{ $order->created_at }}</td>
+                                    <td>@rupiah($order->total)</td>
                                     <td>
-                                        <a href="{{ route('item.create', $order->id) }}"><button class="btn btn-success">Add item</button></a>
+                                        <a href="{{ route('order.item.create', $order->id) }}"><button class="btn btn-success">Add item</button></a>
                                         <a href="{{ route('order.show', $order->id) }}"><button class="btn btn-primary">Edit item</button></a>
-                                        <button class="btn btn-info">Edit</button>
-                                        <button class="btn btn-danger">Delete</button>
+                                        <a href="{{ route('order.edit', $order->id) }}"><button class="btn btn-info">Edit status</button></a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{ $order->id }}">Delete</button>
                                     </td>
                                 </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal-{{ $order->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Order</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    @isset($order)
+                                                    <form method="POST"  action="{{ route('order.destroy', $order->id) }}">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                    @endisset
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -68,6 +90,7 @@
             </div>
         </div>
     </div>
+
 @endsection
 
 @push('js-script')

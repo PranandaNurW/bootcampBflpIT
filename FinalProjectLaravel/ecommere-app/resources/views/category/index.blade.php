@@ -5,8 +5,9 @@
 @endpush
 
 @section('main-content')
+
     <!-- Page Heading -->
-    <h1 class="h3 mb-4 text-gray-800">{{ __('Edit items of order ') . $order->invoice }}</h1>
+    <h1 class="h3 mb-4 text-gray-800">{{ __('Category') }}</h1>
 
     @if (session('success'))
     <div class="alert alert-success border-left-success alert-dismissible fade show" role="alert">
@@ -30,42 +31,39 @@
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <a href="{{ route('category.create') }}"><button class="btn btn-success mb-3 mr-3">Add</button></a>
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Product name</th>
-                                    <th>Product quantity</th>
-                                    <th>Product subtotal</th>
+                                    <th>Name</th>
                                     <th>Created At</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($order->items as $orderItem)
+                                @foreach ($categories as $category)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $orderItem->product->name }}</td>
-                                    <td>{{ $orderItem->quantity }}</td>
-                                    <td>@rupiah($orderItem->subtotal)</td>
-                                    <td>{{ $orderItem->created_at }}</td>
+                                    <td>{{ $category->name }}</td>
+                                    <td>{{ $category->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('order.item.edit', ["order" => $orderItem->order->id, "item" => $orderItem->id]) }}"><button type="button" class="btn btn-info">Edit</button></a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{ $orderItem->id }}">Delete</button>
+                                        <a href="{{ route('category.edit', $category->id) }}"><button class="btn btn-info">Edit</button></a>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{ $category->id }}">Delete</button>
                                     </td>
                                 </tr>
                                 <!-- Modal -->
-                                <div class="modal fade" id="deleteModal-{{ $orderItem->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteModal-{{ $category->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Category</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    @isset($orderItem)
-                                                    <form method="POST"  action="{{ route('order.item.destroy', ["order" => $orderItem->order->id, "item" => $orderItem->id]) }}">
+                                                    @isset($category)
+                                                    <form method="POST"  action="{{ route('category.destroy', $category->id) }}">
                                                         @method('delete')
                                                         @csrf
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -78,20 +76,13 @@
                                 </div>
                                 @endforeach
                             </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th colspan="3">Total</th>
-                                    <th>@rupiah($order->total)</th>
-                                    <th colspan="2"></th>
-                                </tr>
-                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
+    </div>
 @endsection
 
 @push('js-script')

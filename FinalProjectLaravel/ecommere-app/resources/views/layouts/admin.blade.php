@@ -78,8 +78,8 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <li class="nav-item {{ Nav::isRoute('report.index') }}">
-            <a class="nav-link" href="{{ route('report.index') }}">
+        <li class="nav-item {{ Nav::isRoute('order.report') }}">
+            <a class="nav-link" href="{{ route('order.report') }}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>{{ __('Report') }}</span></a>
         </li>

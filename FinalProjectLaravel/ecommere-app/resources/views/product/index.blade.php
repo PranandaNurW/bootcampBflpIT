@@ -32,7 +32,6 @@
                     <div class="table-responsive">
                         <table class="table table-striped table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <a href="{{ route('product.create') }}"><button class="btn btn-success mb-3 mr-3">Add</button></a>
-                            <button class="btn btn-primary mb-3">Bulk Add</button>
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -53,9 +52,32 @@
                                     <td><p class="badge badge-primary">{{ $product->status }}</p></td>
                                     <td>
                                         <a href="{{ route('product.edit', $product->id) }}"><button class="btn btn-info">Edit</button></a>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{ $product->id }}">Delete</button>
                                     </td>
                                 </tr>
+                                <!-- Modal -->
+                                <div class="modal fade" id="deleteModal-{{ $product->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    @isset($product)
+                                                    <form method="POST"  action="{{ route('product.destroy', $product->id) }}">
+                                                        @method('delete')
+                                                        @csrf
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                                    </form>
+                                                    @endisset
+                                                </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endforeach
                             </tbody>
                         </table>
@@ -64,27 +86,6 @@
             </div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Delete Product</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="POST"  action="{{ route('product.destroy', $product->id) }}">
-                                @method('delete')
-                                @csrf
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
 
